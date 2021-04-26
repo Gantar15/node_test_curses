@@ -8,10 +8,10 @@
              <div class="card-image">
                <img src="{{img}}" alt="{{title}}" style="height: 300px; object-fit: cover;">
                
-               <form action="/card/add" method="post" name="card_add">
+               <form action="/card/add" method="post" name="{{id}}">
                   <input type="hidden" name="id" value="{{id}}">
                </form>
-               <a onclick="document.forms.card_add.submit()" class="btn-floating halfway-fab waves-effect waves-light blue"><i style="margin-top: -2px;" class="material-icons large">+</i></a>
+               <a onclick="document.forms['{{id}}'].submit()" class="btn-floating halfway-fab waves-effect waves-light blue"><i style="margin-top: -2px;" class="material-icons large">+</i></a>
             
              </div>
              <div class="card-content">

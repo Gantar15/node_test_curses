@@ -11,8 +11,9 @@ module.exports = class Card{
     static async add(course){
         const card = await Card.fetch();
 
-        const index  = card.courses.findIndex(crs => crs.id === course.id);
+        const index = card.courses.findIndex(crs => crs.id === course.id);
         const cond = card.courses[index];
+        course.count = 1;
 
         if(cond){
             cond.count++;
@@ -38,6 +39,29 @@ module.exports = class Card{
             fs.readFile(p, 'utf-8', (err, content)=>{
                 if(err) reject(err);
                 resolve(JSON.parse(content));
+            });
+        });
+    }
+
+    static async remove(id){
+        const card = await Card.fetch();
+
+        const courseIndex = card.courses.findIndex(crs => crs.id === id);
+        const course = card.courses[courseIndex];
+
+        if(course.count === 1)
+            card.courses.splice(courseIndex, 1);
+        else
+            course.count--;
+
+        card.price -= course.price;
+
+        return new Promise((resolve, reject) => {
+            fs.writeFile(p, JSON.stringify(card), err => {
+                if(err)
+                    reject(err);
+                else
+                    resolve(card);
             });
         });
     }

@@ -1,2 +1,30 @@
 <h1>Корзина</h1>
 
+<div id="card">
+    {{#if courses.length}}
+        <table>
+            <thead>
+                <tr>
+                    <th>Название</th>
+                    <th>Количество</th>
+                    <th>Действия</th>
+                </tr>
+            </thead> 
+            <tbody class="main_body">
+                {{#each courses}}
+                    <tr>
+                        <td>{{title}}</td>
+                        <td>{{count}}</td>
+                        <td>
+                            <button class="btn btm-small card-delete" data-id="{{id}}">Удалить</button>
+                        </td>
+                    </tr>
+                {{/each}}
+            </tbody>     
+        </table>
+
+        <p><b>Цена</b> <span class="price">{{price}}</span></p>
+    {{else}}
+        <p>Корзина пуста</p>
+    {{/if}}
+</div>
