@@ -4,18 +4,18 @@ const router = new Router();
 
 
 router.get('/', async (req, res) => {
-    const courses = await Course.getAll();
+    let courses = await Course.find().populate('userId', 'email name').select('img title price');
 
     res.render('courses', {
         title: "Курсы",
         isCourses: true,
-        courses: courses
+        courses
     });
 });
 
 router.get('/:id', async (req, res) => {
     const courseId = req.params.id;
-    const course = await Course.getById(courseId);
+    const course = await Course.findById(courseId);
     
     res.render('course', {
         layout: 'empty',
@@ -28,7 +28,7 @@ router.get('/:id/edit', async (req, res)=>{
     if (!req.query.allow) {
         return res.redirect('/');
     }
-    const course = await Course.getById(req.params.id);
+    const course = await Course.findById(req.params.id);
 
     res.render('course-edit', {
         title: `Редактирование ${course.title}`,
@@ -37,8 +37,21 @@ router.get('/:id/edit', async (req, res)=>{
 });
 
 router.post('/edit', async (req, res) => {
-    await Course.update(req.body);
-    res.redirect('/courses/'+req.body.id);
+    const {id} = req.body;
+    delete req.body.id;
+    await Course.findByIdAndUpdate(id, req.body);
+    res.redirect('/courses/'+id);
+});
+
+router.post('/remove', async (req, resp) => {
+    try{
+        await Course.deleteOne({
+            _id: req.body.id
+        });
+        resp.redirect('/courses');
+    } catch(e){
+        console.log(e);
+    }
 });
 
 module.exports = router;
