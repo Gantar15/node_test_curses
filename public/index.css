@@ -1,10 +1,17 @@
 
+@import url('./orders.css');
+@import url('./auth.css');
+
 .nav-wrapper{
     padding: 0 2rem;
 }
 
 .card-title h4{
     font-weight: 500;
+    margin-top: -10px !important;
+}
+.card-content{
+    padding: 2rem 1.4rem !important;
 }
 
 .card-action a{

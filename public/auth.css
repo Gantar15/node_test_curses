@@ -1,0 +1,11 @@
+.auth{
+    padding-top: 1rem;
+}
+
+a:focus.active{
+    background-color: #2e7d3226 !important;
+}
+
+.tabs .indicator{
+    background-color: #4caf50 !important;
+}

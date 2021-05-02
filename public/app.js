@@ -43,3 +43,21 @@ if($card){
         }
     });
 }
+
+
+const toDate = date => {
+    return new Intl.DateTimeFormat('ru-RU', {
+        day: "numeric",
+        weekday: "long",
+        year: "numeric",
+        month: "long"
+    }).format(date);
+};
+
+const dates = document.querySelectorAll('.date');
+dates.forEach($date => {
+    $date.textContent = toDate(Date.parse($date.textContent));
+});
+
+
+var instance = M.Tabs.init(document.querySelectorAll('.tabs'));
