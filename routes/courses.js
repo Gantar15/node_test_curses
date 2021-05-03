@@ -32,6 +32,7 @@ router.get('/:id/edit', auth, async (req, res)=>{
     const course = await Course.findById(req.params.id);
 
     res.render('course-edit', {
+        isCourses: true,
         title: `Редактирование ${course.title}`,
         course
     });

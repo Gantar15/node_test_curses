@@ -16,7 +16,7 @@
                         <td>{{title}}</td>
                         <td>{{count}}</td>
                         <td>
-                            <button class="btn btm-small card-delete" data-id="{{id}}">Удалить</button>
+                            <button class="btn btm-small card-delete orange" data-csrf="{{@root.csrf}}" data-id="{{id}}">Удалить</button>
                         </td>
                     </tr>
                 {{/each}}
@@ -26,7 +26,8 @@
         <p><b>Цена</b> <span class="price">{{price}}</span></p>
 
         <form action="/orders" method="POST">
-            <button class="btn green" type="submit">Заказать</button>
+            <button class="btn blue" type="submit">Заказать</button>
+            <input type="hidden" name="_csrf" value="{{csrf}}">
         </form>
     {{else}}
         <p>Корзина пуста</p>

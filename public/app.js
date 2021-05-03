@@ -17,7 +17,10 @@ if($card){
             const id = target.dataset.id;
 
             fetch('/card/remove/' + id, {
-                method: 'DELETE'
+                method: 'DELETE',
+                headers: {
+                    'X-XSRF-TOKEN': target.dataset.csrf
+                }
             }).then(resp => resp.json())
             .then(card => {
                 if(card.courses.length){
@@ -27,7 +30,7 @@ if($card){
                                 <td>${course.title}</td>
                                 <td>${course.count}</td>
                                 <td>
-                                    <button class="btn btm-small card-delete" data-id="${course.id}">Удалить</button>
+                                    <button class="btn btm-small card-delete orange" data-id="${course.id}">Удалить</button>
                                 </td>
                             </tr>
                         `; 

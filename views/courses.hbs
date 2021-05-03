@@ -10,6 +10,7 @@
                
                <form action="/card/add" method="post" name="{{id}}">
                   <input type="hidden" name="id" value="{{id}}">
+                  <input type="hidden" name="_csrf" value="{{@root.csrf}}">
                </form>
                {{#if @root.isAuth}}
                 <a onclick="document.forms['{{id}}'].submit()" class="btn-floating halfway-fab waves-effect waves-light green"><i style="margin-top: -2px;" class="material-icons large">+</i></a>
