@@ -21,3 +21,7 @@ a:focus.active{
     background-color: #d90a0aab;
     color: white;
 }
+
+.alert.success{
+    background-color: #2cd90aab;
+}

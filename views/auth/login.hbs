@@ -12,6 +12,10 @@
                 <p class="alert">{{loginError}}</p>
             {{/if}}
 
+            {{#if success}}
+                <p class="alert success">{{success}}</p>
+            {{/if}}
+
             <h1>Войти в магазин</h1>
             <form action="/auth/login" method="POST" style="margin-top: 45px;">
                     <div class="input-field row s6">
@@ -26,6 +30,8 @@
                     </div>
 
                     <input type="hidden" name="_csrf" value="{{csrf}}">
+
+                    <p><a href="/auth/reset">Забыли пароль</a></p>
 
                     <button class="btn btn-primary" type="submit">Войти</button>
             </form>

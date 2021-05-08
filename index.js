@@ -17,14 +17,15 @@ const Handlebars = require('handlebars');
 const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
 const varMiddleware = require('./middleware/variables');
 const userMiddleware = require('./middleware/user');
+const keys = require('./keys/index');
 
 
-const mongoURI = "mongodb+srv://egor:bZbUVx437yaPrbMO@cluster0.tp9vi.mongodb.net/shop";
 const app = express();
 const hbs = exphbs.create({
     defaultLayout: "main",
     extname: "hbs",
-    handlebars: allowInsecurePrototypeAccess(Handlebars)
+    handlebars: allowInsecurePrototypeAccess(Handlebars),
+    helpers: require('./utils/hbs-helpers')
 });
 
 app.engine('hbs', hbs.engine);
@@ -33,7 +34,7 @@ app.set('views', './views');
 
 const store = new MongoStore({
     collection: 'sessions',
-    uri: mongoURI
+    uri: keys.mongoURI
 });
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -41,7 +42,7 @@ app.use(express.urlencoded({
     extended: true
 }));
 app.use(session({
-    secret: 'scrt val',
+    secret: keys.session_secret,
     resave: false,
     saveUninitialized: false,
     store
@@ -63,7 +64,7 @@ const PORT = process.env.PORT ?? 5000;
 
 !async function(){
     try{
-        await mongoose.connect(mongoURI, {
+        await mongoose.connect(keys.mongoURI, {
             useUnifiedTopology: true,
             useNewUrlParser: true,
             useFindAndModify: false

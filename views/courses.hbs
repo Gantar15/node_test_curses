@@ -23,9 +23,9 @@
              </div>
              <div class="card-action">
                <a href="/courses/{{id}}">Открыть курс</a>
-               {{#if @root.isAuth}}
+               {{#ifeq userId._id @root.userId}}
                 <a href="/courses/{{id}}/edit?allow=true">Изменить курс</a>
-               {{/if}}
+               {{/ifeq}}
              </div>
            </div>
          </div>
