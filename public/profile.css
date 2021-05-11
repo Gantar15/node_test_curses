@@ -1,0 +1,14 @@
+
+.avatar{
+    max-width: 300px;
+    min-height: 320px;
+    object-fit: cover;
+}
+
+.change_profile{
+    margin-top: 20px
+}
+
+.profile_email{
+    padding-bottom: 20px;
+}

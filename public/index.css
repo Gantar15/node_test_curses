@@ -1,6 +1,7 @@
 
 @import url('./orders.css');
 @import url('./auth.css');
+@import url('./profile.css');
 
 .nav-wrapper{
     padding: 0 2rem;
